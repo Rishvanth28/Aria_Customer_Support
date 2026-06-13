@@ -21,7 +21,7 @@ The system helps customer support executives quickly retrieve answers from compa
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Backend
 - Django
