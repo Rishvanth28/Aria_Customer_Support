@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aria AI Customer Support</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--bg: #eef2ff;
+	--bg-2: #f7f8fc;
+	--surface: rgba(255, 255, 255, 0.88);
+	--surface-strong: #ffffff;
+	--surface-soft: #f6f7fb;
+	--border: rgba(78, 93, 148, 0.14);
+	--border-strong: rgba(78, 93, 148, 0.2);
+	--text: #182033;
+	--muted: #65708a;
+	--accent: #5b4ce4;
+	--accent-dark: #4336c7;
+	--accent-soft: #ece9ff;
+	--success: #11997d;
+	--success-soft: #e2f7f0;
+	--shadow: 0 24px 60px rgba(28, 35, 57, 0.12);
+	--shadow-soft: 0 12px 30px rgba(34, 41, 66, 0.08);
+}
+
+html, body {
+	min-height: 100%;
+}
+
+body {
+	font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+	background:
+		radial-gradient(circle at top left, rgba(91, 76, 228, 0.14), transparent 30%),
+		radial-gradient(circle at top right, rgba(17, 153, 125, 0.12), transparent 26%),
+		linear-gradient(180deg, #e8ecff 0%, #f5f7fc 42%, #eef1f7 100%);
+	color: var(--text);
+	min-height: 100vh;
+	padding: 24px;
+}
+
+.frame {
+	max-width: 1240px;
+	margin: 0 auto;
+	min-height: calc(100vh - 48px);
+	display: grid;
+	grid-template-columns: 280px minmax(0, 1fr);
+	gap: 20px;
+}
+
+.sidebar,
+.workspace {
+	background: var(--surface);
+	backdrop-filter: blur(18px);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow);
+}
+
+.sidebar {
+	border-radius: 28px;
+	padding: 28px 22px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background:
+		linear-gradient(180deg, rgba(91, 76, 228, 0.96), rgba(36, 25, 103, 0.98)),
+		var(--accent);
+	color: #fff;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 28px;
+}
+
+.brand-mark {
+	width: 52px;
+	height: 52px;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.14);
+	display: grid;
+	place-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.brand-mark i {
+	font-size: 24px;
+}
+
+.brand-copy h1 {
+	font-size: 20px;
+	line-height: 1.15;
+	font-weight: 800;
+}
+
+.brand-copy p {
+	margin-top: 5px;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.76);
+}
+
+.nav-title {
+	margin: 18px 0 12px;
+	font-size: 12px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.62);
+}
+
+.menu {
+	display: grid;
+	gap: 10px;
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 15px;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.menu-item.active {
+	background: rgba(255, 255, 255, 0.16);
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.menu-item i {
+	font-size: 17px;
+}
+
+.sidebar-footer {
+	margin-top: 24px;
+	padding: 16px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-footer .label {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar-footer .value {
+	margin-top: 8px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.sidebar-footer .hint {
+	margin-top: 6px;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.75);
+	line-height: 1.55;
+}
+
+.workspace {
+	border-radius: 28px;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: auto auto auto 1fr auto;
+	min-width: 0;
+}
+
+.topbar {
+	padding: 22px 24px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 252, 0.96));
+	border-bottom: 1px solid var(--border);
+}
+
+.profile {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	min-width: 0;
+}
+
+.avatar {
+	width: 58px;
+	height: 58px;
+	border-radius: 18px;
+	background:
+		radial-gradient(circle at 30% 28%, #7e70ff 0 22%, transparent 23%),
+		linear-gradient(135deg, #6a59f0, #231a67);
+	display: grid;
+	place-items: center;
+	color: #fff;
+	box-shadow: 0 14px 30px rgba(91, 76, 228, 0.28);
+	flex-shrink: 0;
+}
+
+.avatar i {
+	font-size: 26px;
+}
+
+.profile-copy h2 {
+	font-size: 21px;
+	line-height: 1.15;
+	font-weight: 800;
+}
+
+.profile-copy p {
+	margin-top: 6px;
+	color: var(--muted);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.status {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 14px;
+	border-radius: 999px;
+	background: var(--success-soft);
+	color: var(--success);
+	font-size: 13px;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.status-dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--success);
+	box-shadow: 0 0 0 5px rgba(17, 153, 125, 0.14);
+}
+
+.banner {
+	padding: 14px 24px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	background: linear-gradient(90deg, rgba(91, 76, 228, 0.08), rgba(17, 153, 125, 0.05));
+	border-bottom: 1px solid var(--border);
+}
+
+.banner-copy {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+}
+
+.banner-copy i {
+	font-size: 18px;
+	color: var(--accent);
+}
+
+.banner-copy span {
+	color: var(--text);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.badge {
+	padding: 8px 12px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 700;
+	background: #fff;
+	border: 1px solid var(--border);
+	color: var(--muted);
+}
+
+.badge.purple {
+	background: var(--accent-soft);
+	color: var(--accent-dark);
+	border-color: rgba(91, 76, 228, 0.12);
+}
+
+.badge.green {
+	background: var(--success-soft);
+	color: var(--success);
+	border-color: rgba(17, 153, 125, 0.12);
+}
+
+.stats {
+	padding: 18px 24px 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 14px;
+}
+
+.stat {
+	background: var(--surface-strong);
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	padding: 16px;
+	box-shadow: var(--shadow-soft);
+}
+
+.stat .kicker {
+	font-size: 12px;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.stat .value {
+	margin-top: 10px;
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--text);
+}
+
+.stat .detail {
+	margin-top: 6px;
+	font-size: 13px;
+	color: var(--muted);
+	line-height: 1.4;
+}
+
+.chat-box {
+	margin: 18px 24px 0;
+	padding: 22px;
+	border-radius: 24px;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 246, 252, 0.94));
+	border: 1px solid var(--border);
+	overflow-y: auto;
+	min-height: 0;
+}
+
+.chat-box::-webkit-scrollbar {
+	width: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+	background: rgba(91, 76, 228, 0.18);
+	border-radius: 999px;
+	border: 3px solid transparent;
+	background-clip: padding-box;
+}
+
+.empty-state {
+	padding: 42px 20px;
+	text-align: center;
+	border: 1px dashed rgba(91, 76, 228, 0.2);
+	border-radius: 22px;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state i {
+	font-size: 34px;
+	color: var(--accent);
+}
+
+.empty-state h3 {
+	margin-top: 14px;
+	font-size: 18px;
+	font-weight: 800;
+}
+
+.empty-state p {
+	margin-top: 8px;
+	color: var(--muted);
+	font-size: 14px;
+}
+
+.thread {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.message-row {
+	display: flex;
+	gap: 12px;
+	align-items: flex-end;
+}
+
+.message-row.user {
+	flex-direction: row-reverse;
+}
+
+.message-avatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 14px;
+	display: grid;
+	place-items: center;
+	flex-shrink: 0;
+}
+
+.message-avatar.bot {
+	background: var(--accent-soft);
+	color: var(--accent);
+}
+
+.message-avatar.user {
+	background: var(--success-soft);
+	color: var(--success);
+}
+
+.message-avatar i {
+	font-size: 20px;
+}
+
+.message-body {
+	max-width: min(74%, 760px);
+	display: grid;
+	gap: 9px;
+}
+
+.message-row.user .message-body {
+	justify-items: end;
+}
+
+.bubble {
+	padding: 16px 18px;
+	border-radius: 20px;
+	line-height: 1.72;
+	font-size: 15px;
+	word-break: break-word;
+	box-shadow: 0 8px 20px rgba(22, 28, 45, 0.05);
+}
+
+.bubble.user {
+	background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+	color: #fff;
+	border-bottom-right-radius: 6px;
+}
+
+.bubble.bot {
+	background: #fff;
+	color: var(--text);
+	border: 1px solid var(--border);
+	border-bottom-left-radius: 6px;
+}
+
+.meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.chip {
+	padding: 6px 10px;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.chip.pages {
+	background: var(--accent-soft);
+	color: var(--accent-dark);
+}
+
+.chip.confidence {
+	background: var(--success-soft);
+	color: var(--success);
+}
+
+.speak-btn {
+	border: 1px solid var(--border);
+	background: #fff;
+	color: var(--text);
+	padding: 8px 12px;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.speak-btn:hover {
+	transform: translateY(-1px);
+	border-color: rgba(91, 76, 228, 0.22);
+	box-shadow: 0 10px 18px rgba(22, 28, 45, 0.08);
+}
+
+.speak-btn i {
+	color: var(--accent);
+}
+
+.composer {
+	margin: 18px 24px 24px;
+	padding: 14px;
+	border-radius: 24px;
+	background: var(--surface-strong);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow-soft);
+}
+
+form {
+	display: block;
+}
+
+.input-area {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.input-shell {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	border-radius: 18px;
+	background: var(--surface-soft);
+	border: 1px solid rgba(91, 76, 228, 0.1);
+}
+
+.input-shell i {
+	color: var(--accent);
+	font-size: 18px;
+}
+
+.input-area input {
+	flex: 1;
+	min-width: 0;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: var(--text);
+	font: inherit;
+	font-size: 15px;
+}
+
+.input-area input::placeholder {
+	color: #8b92a7;
+}
+
+.send-btn {
+	border: none;
+	border-radius: 18px;
+	padding: 14px 20px;
+	background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+	color: #fff;
+	font: inherit;
+	font-size: 14px;
+	font-weight: 800;
+	cursor: pointer;
+	box-shadow: 0 14px 24px rgba(91, 76, 228, 0.22);
+	transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.send-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 16px 28px rgba(91, 76, 228, 0.26);
+}
+
+.send-btn:active {
+	transform: translateY(0);
+}
+
+@media (max-width: 1080px) {
+	body {
+		padding: 16px;
+	}
+
+	.frame {
+		grid-template-columns: 1fr;
+		min-height: calc(100vh - 32px);
+	}
+
+	.sidebar {
+		padding: 22px;
+	}
+
+	.menu {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.stats {
+		grid-template-columns: 1fr;
+	}
+
+	.workspace {
+		min-height: 76vh;
+	}
+}
+
+@media (max-width: 720px) {
+	body {
+		padding: 12px;
+	}
+
+	.frame {
+		min-height: calc(100vh - 24px);
+	}
+
+	.sidebar,
+	.workspace {
+		border-radius: 22px;
+	}
+
+	.topbar,
+	.banner,
+	.stats,
+	.chat-box,
+	.composer {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.chat-box {
+		margin: 16px 16px 0;
+		padding: 16px;
+	}
+
+	.composer {
+		margin: 16px;
+	}
+
+	.banner {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.status {
+		align-self: flex-start;
+	}
+
+	.message-body {
+		max-width: 88%;
+	}
+
+	.input-area {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.send-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}
+</style>
+</head>
+<body>
+
+<div class="frame">
+	<aside class="sidebar">
+		<div>
+			<div class="brand">
+				<div class="brand-mark" aria-hidden="true"><i class="ti ti-headset"></i></div>
+				<div class="brand-copy">
+					<h1>Aria Support</h1>
+					<p>Fast, calm, and helpful customer care.</p>
+				</div>
+			</div>
+
+			<div class="nav-title">Workspace</div>
+			<div class="menu">
+				<div class="menu-item active"><i class="ti ti-messages"></i><span>Conversation</span></div>
+				<div class="menu-item"><i class="ti ti-package"></i><span>Orders</span></div>
+				<div class="menu-item"><i class="ti ti-refresh"></i><span>Returns</span></div>
+				<div class="menu-item"><i class="ti ti-receipt-2"></i><span>Billing</span></div>
+				<div class="menu-item"><i class="ti ti-book"></i><span>Knowledge Base</span></div>
+				<div class="menu-item"><i class="ti ti-user-bolt"></i><span>Human Handoff</span></div>
+			</div>
+		</div>
+
+		<div class="sidebar-footer">
+			<div class="label">Support mode</div>
+			<div class="value">Always on</div>
+			<div class="hint">Designed to keep the experience clear, friendly, and easy to scan on every screen.</div>
+		</div>
+	</aside>
+
+	<main class="workspace">
+		<div class="topbar">
+			<div class="profile">
+				<div class="avatar" aria-hidden="true"><i class="ti ti-robot"></i></div>
+				<div class="profile-copy">
+					<h2>Customer Support Assistant</h2>
+					<p>AI powered • Voice enabled • Built for quick resolution</p>
+				</div>
+			</div>
+			<div class="status"><span class="status-dot"></span>Online</div>
+		</div>
+
+		<div class="banner">
+			<div class="banner-copy">
+				<i class="ti ti-sparkles"></i>
+				<span>Helpful responses with page references and confidence scores</span>
+			</div>
+			<div class="badges">
+				<span class="badge purple">Orders</span>
+				<span class="badge green">Returns</span>
+				<span class="badge">Billing</span>
+			</div>
+		</div>
+
+		<div class="stats">
+			<div class="stat">
+				<div class="kicker">Messages</div>
+				<div class="value">{{ chat_history|length }}</div>
+				<div class="detail">Conversation turns captured in this session.</div>
+			</div>
+			<div class="stat">
+				<div class="kicker">Tone</div>
+				<div class="value">Human</div>
+				<div class="detail">Clean spacing, subtle motion, and readable contrast.</div>
+			</div>
+			<div class="stat">
+				<div class="kicker">Delivery</div>
+				<div class="value">24/7</div>
+				<div class="detail">Built to feel like a polished support desk, not a demo screen.</div>
+			</div>
+		</div>
+
+		<div class="chat-box">
+			{% if chat_history %}
+				<div class="thread">
+					{% for item in chat_history %}
+						<div class="message-row user">
+							<div class="message-avatar user" aria-hidden="true"><i class="ti ti-user"></i></div>
+							<div class="message-body">
+								<div class="bubble user">{{ item.question }}</div>
+							</div>
+						</div>
+
+						<div class="message-row bot">
+							<div class="message-avatar bot" aria-hidden="true"><i class="ti ti-robot"></i></div>
+							<div class="message-body">
+								<div class="bubble bot">{{ item.answer }}</div>
+								<div class="meta">
+									<span>{{ forloop.counter }} response</span>
+									<div class="chips">
+										<span class="chip pages"><i class="ti ti-file-text"></i>Pages: {{ item.pages|join:", " }}</span>
+										<span class="chip confidence"><i class="ti ti-chart-bar"></i>Confidence: {{ item.confidence }}%</span>
+									</div>
+									<button class="speak-btn" type="button" onclick="speakText(`{{ item.answer }}`)"><i class="ti ti-volume"></i>Speak</button>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="empty-state">
+					<i class="ti ti-message-chatbot"></i>
+					<h3>Start the conversation</h3>
+					<p>Ask a question below to see the assistant reply with supporting pages and confidence details.</p>
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="composer">
+			<form method="post">
+				{% csrf_token %}
+				<div class="input-area">
+					<div class="input-shell">
+						<i class="ti ti-microphone-2"></i>
+						<input type="text" name="question" placeholder="Ask your question..." required>
+					</div>
+					<button class="send-btn" type="submit">Send message</button>
+				</div>
+			</form>
+		</div>
+	</main>
+</div>
+
+<script>
+function speakText(text){
+
+const speech =
+new SpeechSynthesisUtterance(text);
+
+speech.rate = 1;
+speech.pitch = 1;
+
+speechSynthesis.speak(speech);
+}
+
+</script>
+
+</body>
+</html>
+</html>
